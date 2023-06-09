@@ -1,6 +1,6 @@
 # calculus
 
-A new Flutter project.
+calculator in flutter
 
 ## Getting Started
 
