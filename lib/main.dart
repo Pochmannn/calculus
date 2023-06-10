@@ -40,9 +40,9 @@ class _CalculusState extends State<Calculus> {
   String screenNumber = '0';
   String text = '0';
 
-  void onNumberClicked() {
-    setState(() => screenNumber += text);
-  }
+  // onNumberClicked() {
+  //   setState(() => screenNumber += text);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,13 @@ class _CalculusState extends State<Calculus> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: onNumberClicked,
+                    onPressed: () {
+                      if (screenNumber == '0') {
+                        setState(() => screenNumber = '1');
+                      } else {
+                        setState(() => screenNumber += '1');
+                      }
+                    },
                     child: Text(
                       text = '1',
                       style: const TextStyle(fontSize: 50),
@@ -89,7 +95,13 @@ class _CalculusState extends State<Calculus> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: onNumberClicked,
+                    onPressed: () {
+                      if (screenNumber == '0') {
+                        setState(() => screenNumber = '2');
+                      } else {
+                        setState(() => screenNumber += '2');
+                      }
+                    },
                     child: Text(
                       text = '2',
                       style: const TextStyle(fontSize: 50),
@@ -108,7 +120,13 @@ class _CalculusState extends State<Calculus> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: onNumberClicked,
+                    onPressed: () {
+                      if (screenNumber == '0') {
+                        setState(() => screenNumber = '3');
+                      } else {
+                        setState(() => screenNumber += '3');
+                      }
+                    },
                     child: Text(
                       text = '3',
                       style: const TextStyle(fontSize: 50),
@@ -127,7 +145,13 @@ class _CalculusState extends State<Calculus> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: onNumberClicked,
+                    onPressed: () {
+                      if (screenNumber == '0') {
+                        setState(() => screenNumber = '4');
+                      } else {
+                        setState(() => screenNumber += '4');
+                      }
+                    },
                     child: Text(
                       text = '4',
                       style: const TextStyle(fontSize: 50),
