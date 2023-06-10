@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
@@ -28,8 +30,6 @@ class Calculus extends StatefulWidget {
   const Calculus({super.key, required this.title});
   final String title;
 
-  void onNumberClicked() {}
-
   @override
   State<Calculus> createState() => _CalculusState();
 }
@@ -37,77 +37,93 @@ class Calculus extends StatefulWidget {
 class _CalculusState extends State<Calculus> {
   int firstNumber = 0;
   int secondNumber = 0;
+  String screenNumber = '0';
+  String text = '';
 
-  void onNumberClicked() {
-    firstNumber = 7;
+  onNumberClicked(String text) {
+    //firstNumber = screenNumber as int;
+    secondNumber = firstNumber;
+    screenNumber = text;
+    log(text);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: UIConstants.appBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.black,
-                border: Border.all(width: 10, color: Colors.blueGrey),
-                borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      appBar: UIConstants.appBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey.shade900,
-                        height: 150,
-                        child: NumberScreen(
-                          screenNumber: '0',
-                        ),
-                      ),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey.shade900,
+                    height: 150,
+                    child: NumberScreen(
+                      screenNumber: screenNumber,
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NumberButton(onTap: onNumberClicked, label: '7'),
-                    NumberButton(onTap: onNumberClicked, label: '8'),
-                    NumberButton(onTap: onNumberClicked, label: '9'),
-                    ActionButton(onTap: onNumberClicked, label: 'X'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NumberButton(onTap: onNumberClicked, label: '4'),
-                    NumberButton(onTap: onNumberClicked, label: '5'),
-                    NumberButton(onTap: onNumberClicked, label: '6'),
-                    ActionButton(onTap: onNumberClicked, label: '-'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NumberButton(onTap: onNumberClicked, label: '1'),
-                    NumberButton(onTap: onNumberClicked, label: '2'),
-                    NumberButton(onTap: onNumberClicked, label: '3'),
-                    ActionButton(onTap: onNumberClicked, label: '+'),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NumberButton(onTap: onNumberClicked, label: '±'),
-                    NumberButton(onTap: onNumberClicked, label: '0'),
-                    NumberButton(onTap: onNumberClicked, label: '.'),
-                    ActionButton(onTap: onNumberClicked, label: '='),
-                  ],
+                  ),
                 ),
               ],
             ),
-          ),
-        ));
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                NumberButton(
+                    onPressed: onNumberClicked(text = '7'), label: '7'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '8'), label: '8'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '9'), label: '9'),
+                ActionButton(
+                    onPressed: onNumberClicked(text = 'X'), label: 'X'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                NumberButton(
+                    onPressed: onNumberClicked(text = '4'), label: '4'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '5'), label: '5'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '6'), label: '6'),
+                ActionButton(
+                    onPressed: onNumberClicked(text = '-'), label: '-'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                NumberButton(
+                    onPressed: onNumberClicked(text = '1'), label: '1'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '2'), label: '2'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '3'), label: '3'),
+                ActionButton(
+                    onPressed: onNumberClicked(text = '+'), label: '+'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                NumberButton(
+                    onPressed: onNumberClicked(text = '±'), label: '±'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '0'), label: '0'),
+                NumberButton(
+                    onPressed: onNumberClicked(text = '.'), label: '.'),
+                ActionButton(
+                    onPressed: onNumberClicked(text = '='), label: '='),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class NumberButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final VoidCallback? onPressed;
   final String label;
 
   const NumberButton({
     super.key,
-    required this.onTap,
+    required this.onPressed,
     required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
+    return ElevatedButton(
+      onPressed: onPressed,
       child: Chip(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.all(5),
         label: Text(
           label,
           style: const TextStyle(fontSize: 20),
