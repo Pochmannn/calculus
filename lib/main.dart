@@ -38,13 +38,10 @@ class _CalculusState extends State<Calculus> {
   int firstNumber = 0;
   int secondNumber = 0;
   String screenNumber = '0';
-  String text = '';
+  String text = '0';
 
-  onNumberClicked(String text) {
-    //firstNumber = screenNumber as int;
-    secondNumber = firstNumber;
-    screenNumber = text;
-    log(text);
+  void onNumberClicked() {
+    setState(() => screenNumber += text);
   }
 
   @override
@@ -72,53 +69,77 @@ class _CalculusState extends State<Calculus> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                NumberButton(
-                    onPressed: onNumberClicked(text = '7'), label: '7'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '8'), label: '8'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '9'), label: '9'),
-                ActionButton(
-                    onPressed: onNumberClicked(text = 'X'), label: 'X'),
+                OutlinedButton(
+                    onPressed: onNumberClicked,
+                    child: Text(
+                      text = '1',
+                      style: const TextStyle(fontSize: 50),
+                    )),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '7'), label: '7'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '8'), label: '8'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '9'), label: '9'),
+                // ActionButton(
+                //     onPressed: onNumberClicked(text = 'X'), label: 'X'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                NumberButton(
-                    onPressed: onNumberClicked(text = '4'), label: '4'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '5'), label: '5'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '6'), label: '6'),
-                ActionButton(
-                    onPressed: onNumberClicked(text = '-'), label: '-'),
+                OutlinedButton(
+                    onPressed: onNumberClicked,
+                    child: Text(
+                      text = '2',
+                      style: const TextStyle(fontSize: 50),
+                    )),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '4'), label: '4'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '5'), label: '5'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '6'), label: '6'),
+                // ActionButton(
+                //     onPressed: onNumberClicked(text = '-'), label: '-'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                NumberButton(
-                    onPressed: onNumberClicked(text = '1'), label: '1'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '2'), label: '2'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '3'), label: '3'),
-                ActionButton(
-                    onPressed: onNumberClicked(text = '+'), label: '+'),
+                OutlinedButton(
+                    onPressed: onNumberClicked,
+                    child: Text(
+                      text = '3',
+                      style: const TextStyle(fontSize: 50),
+                    )),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '1'), label: '1'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '2'), label: '2'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '3'), label: '3'),
+                // ActionButton(
+                //     onPressed: onNumberClicked(text = '+'), label: '+'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                NumberButton(
-                    onPressed: onNumberClicked(text = '±'), label: '±'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '0'), label: '0'),
-                NumberButton(
-                    onPressed: onNumberClicked(text = '.'), label: '.'),
-                ActionButton(
-                    onPressed: onNumberClicked(text = '='), label: '='),
+                OutlinedButton(
+                    onPressed: onNumberClicked,
+                    child: Text(
+                      text = '4',
+                      style: const TextStyle(fontSize: 50),
+                    )),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '±'), label: '±'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '0'), label: '0'),
+                // NumberButton(
+                //     onPressed: onNumberClicked(text = '.'), label: '.'),
+                // ActionButton(
+                //     onPressed: onNumberClicked(text = '='), label: '='),
               ],
             ),
           ],

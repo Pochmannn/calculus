@@ -12,15 +12,11 @@ class NumberButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return OutlinedButton(
       onPressed: onPressed,
-      child: Chip(
-        padding: const EdgeInsets.all(5),
-        label: Text(
-          label,
-          style: const TextStyle(fontSize: 20),
-        ),
-        backgroundColor: Colors.grey.shade300,
+      child: Text(
+        label,
+        style: const TextStyle(fontSize: 50),
       ),
     );
   }
