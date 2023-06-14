@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
@@ -35,14 +33,10 @@ class Calculus extends StatefulWidget {
 }
 
 class _CalculusState extends State<Calculus> {
-  int firstNumber = 0;
-  int secondNumber = 0;
+  //int firstNumber = 0;
+  //int secondNumber = 0;
   String screenNumber = '0';
   String text = '0';
-
-  // onNumberClicked() {
-  //   setState(() => screenNumber += text);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +64,12 @@ class _CalculusState extends State<Calculus> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 OutlinedButton(
-                    onPressed: () {
-                      if (screenNumber == '0') {
-                        setState(() => screenNumber = '1');
-                      } else {
-                        setState(() => screenNumber += '1');
-                      }
-                    },
+                    onPressed: () => newMethod('1'),
                     child: Text(
                       text = '1',
                       style: const TextStyle(fontSize: 50),
                     )),
+
                 // NumberButton(
                 //     onPressed: onNumberClicked(text = '7'), label: '7'),
                 // NumberButton(
@@ -146,14 +135,10 @@ class _CalculusState extends State<Calculus> {
               children: [
                 OutlinedButton(
                     onPressed: () {
-                      if (screenNumber == '0') {
-                        setState(() => screenNumber = '4');
-                      } else {
-                        setState(() => screenNumber += '4');
-                      }
+                      setState(() => screenNumber = '0');
                     },
                     child: Text(
-                      text = '4',
+                      text = 'C',
                       style: const TextStyle(fontSize: 50),
                     )),
                 // NumberButton(
@@ -170,5 +155,13 @@ class _CalculusState extends State<Calculus> {
         ),
       ),
     );
+  }
+
+  dynamic newMethod(String textTile) {
+    if (screenNumber == '0') {
+      setState(() => screenNumber = textTile);
+    } else {
+      setState(() => screenNumber += textTile);
+    }
   }
 }

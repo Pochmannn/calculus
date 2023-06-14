@@ -18,7 +18,7 @@ class NumberScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               screenNumber,
-              style: const TextStyle(fontSize: 35, color: Colors.white),
+              style: const TextStyle(fontSize: 30, color: Colors.white),
             ),
           ),
         ),
@@ -28,7 +28,7 @@ class NumberScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               screenNumber,
-              style: const TextStyle(fontSize: 60, color: Colors.white),
+              style: const TextStyle(fontSize: 40, color: Colors.white),
             ),
           ),
         ),
