@@ -2,7 +2,6 @@ import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
 import 'components/number_button.dart';
-import 'components/action_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +32,30 @@ class Calculus extends StatefulWidget {
 }
 
 class _CalculusState extends State<Calculus> {
-  //int firstNumber = 0;
-  //int secondNumber = 0;
   String screenNumber = '0';
-  String text = '0';
+  double calcNumber = 0;
+
+  dynamic clickNumber(String textTile) {
+    if (screenNumber == '0') {
+      setState(() => screenNumber = textTile);
+    } else {
+      setState(
+        () => screenNumber += textTile,
+      );
+      setState(() => calcNumber = double.parse(screenNumber));
+    }
+  }
+
+  void resetNumber() {
+    setState(() => screenNumber = '0');
+  }
+
+  divideNumber() {
+    setState(
+      () => calcNumber = calcNumber / 2,
+    );
+    setState(() => screenNumber = calcNumber as String);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,105 +82,90 @@ class _CalculusState extends State<Calculus> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlinedButton(
-                    onPressed: () => newMethod('1'),
-                    child: Text(
-                      text = '1',
-                      style: const TextStyle(fontSize: 50),
-                    )),
-
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '7'), label: '7'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '8'), label: '8'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '9'), label: '9'),
-                // ActionButton(
-                //     onPressed: onNumberClicked(text = 'X'), label: 'X'),
+                NumberButton(
+                  onPressed: () => clickNumber('7'),
+                  label: '7',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('8'),
+                  label: '8',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('9'),
+                  label: '9',
+                ),
+                NumberButton(
+                  onPressed: () => divideNumber(),
+                  label: '/',
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlinedButton(
-                    onPressed: () {
-                      if (screenNumber == '0') {
-                        setState(() => screenNumber = '2');
-                      } else {
-                        setState(() => screenNumber += '2');
-                      }
-                    },
-                    child: Text(
-                      text = '2',
-                      style: const TextStyle(fontSize: 50),
-                    )),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '4'), label: '4'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '5'), label: '5'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '6'), label: '6'),
-                // ActionButton(
-                //     onPressed: onNumberClicked(text = '-'), label: '-'),
+                NumberButton(
+                  onPressed: () => clickNumber('4'),
+                  label: '4',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('5'),
+                  label: '5',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('6'),
+                  label: '6',
+                ),
+                NumberButton(
+                  onPressed: () => resetNumber(),
+                  label: '-',
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlinedButton(
-                    onPressed: () {
-                      if (screenNumber == '0') {
-                        setState(() => screenNumber = '3');
-                      } else {
-                        setState(() => screenNumber += '3');
-                      }
-                    },
-                    child: Text(
-                      text = '3',
-                      style: const TextStyle(fontSize: 50),
-                    )),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '1'), label: '1'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '2'), label: '2'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '3'), label: '3'),
-                // ActionButton(
-                //     onPressed: onNumberClicked(text = '+'), label: '+'),
+                NumberButton(
+                  onPressed: () => clickNumber('1'),
+                  label: '1',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('2'),
+                  label: '2',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('3'),
+                  label: '3',
+                ),
+                NumberButton(
+                  onPressed: () => resetNumber(),
+                  label: '+',
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                OutlinedButton(
-                    onPressed: () {
-                      setState(() => screenNumber = '0');
-                    },
-                    child: Text(
-                      text = 'C',
-                      style: const TextStyle(fontSize: 50),
-                    )),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '±'), label: '±'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '0'), label: '0'),
-                // NumberButton(
-                //     onPressed: onNumberClicked(text = '.'), label: '.'),
-                // ActionButton(
-                //     onPressed: onNumberClicked(text = '='), label: '='),
+                NumberButton(
+                  onPressed: () => resetNumber(),
+                  label: 'C',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('0'),
+                  label: '0',
+                ),
+                NumberButton(
+                  onPressed: () => clickNumber('.'),
+                  label: '.',
+                ),
+                NumberButton(
+                  onPressed: () => resetNumber(),
+                  label: '=',
+                ),
               ],
             ),
           ],
         ),
       ),
     );
-  }
-
-  dynamic newMethod(String textTile) {
-    if (screenNumber == '0') {
-      setState(() => screenNumber = textTile);
-    } else {
-      setState(() => screenNumber += textTile);
-    }
   }
 }
