@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
@@ -33,9 +35,12 @@ class Calculus extends StatefulWidget {
 
 class _CalculusState extends State<Calculus> {
   String screenNumber = '0';
+  String screenNumber2 = '';
   double calcNumber = 0;
+  double calcNumber2 = 0;
+  String option = '';
 
-  dynamic clickNumber(String textTile) {
+  clickNumber(String textTile) {
     if (screenNumber == '0') {
       setState(() => screenNumber = textTile);
     } else {
@@ -48,13 +53,42 @@ class _CalculusState extends State<Calculus> {
 
   void resetNumber() {
     setState(() => screenNumber = '0');
+    setState(() => screenNumber2 = '');
+    setState(() => calcNumber = 0);
+    setState(() => calcNumber2 = 0);
   }
 
-  divideNumber() {
-    setState(
-      () => calcNumber = calcNumber / 2,
-    );
-    setState(() => screenNumber = calcNumber as String);
+  getResult(option) {
+    setState(() => screenNumber = calcNumber.toString());
+    switch (option) {
+      case '/':
+        {
+          setState(() => calcNumber = calcNumber2 / calcNumber);
+          setState(() => screenNumber = calcNumber.toString());
+        }
+        break;
+
+      case '+':
+        {
+          setState(() => calcNumber = calcNumber2 + calcNumber);
+          setState(() => screenNumber = calcNumber.toString());
+        }
+        break;
+
+      case '-':
+        {
+          setState(() => calcNumber = calcNumber2 - calcNumber);
+          setState(() => screenNumber = calcNumber.toString());
+        }
+        break;
+    }
+    setState(() => screenNumber2 = '');
+  }
+
+  getCurrentOption(option) {
+    setState(() => calcNumber2 = calcNumber);
+    setState(() => screenNumber2 = screenNumber);
+    setState(() => screenNumber = '0');
   }
 
   @override
@@ -74,6 +108,7 @@ class _CalculusState extends State<Calculus> {
                     height: 150,
                     child: NumberScreen(
                       screenNumber: screenNumber,
+                      screenNumber2: screenNumber2,
                     ),
                   ),
                 ),
@@ -95,7 +130,7 @@ class _CalculusState extends State<Calculus> {
                   label: '9',
                 ),
                 NumberButton(
-                  onPressed: () => divideNumber(),
+                  onPressed: () => getCurrentOption(option = '/'),
                   label: '/',
                 ),
               ],
@@ -116,7 +151,7 @@ class _CalculusState extends State<Calculus> {
                   label: '6',
                 ),
                 NumberButton(
-                  onPressed: () => resetNumber(),
+                  onPressed: () => getCurrentOption(option = '-'),
                   label: '-',
                 ),
               ],
@@ -137,7 +172,7 @@ class _CalculusState extends State<Calculus> {
                   label: '3',
                 ),
                 NumberButton(
-                  onPressed: () => resetNumber(),
+                  onPressed: () => getCurrentOption(option = '+'),
                   label: '+',
                 ),
               ],
@@ -158,7 +193,7 @@ class _CalculusState extends State<Calculus> {
                   label: '.',
                 ),
                 NumberButton(
-                  onPressed: () => resetNumber(),
+                  onPressed: () => getResult(option),
                   label: '=',
                 ),
               ],

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class NumberScreen extends StatelessWidget {
   final String screenNumber;
+  final String screenNumber2;
 
   const NumberScreen({
     super.key,
     required this.screenNumber,
+    required this.screenNumber2,
   });
 
   @override
@@ -17,7 +19,7 @@ class NumberScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              screenNumber,
+              screenNumber2,
               style: const TextStyle(fontSize: 30, color: Colors.white),
             ),
           ),
