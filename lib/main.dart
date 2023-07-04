@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
@@ -43,6 +41,7 @@ class _CalculusState extends State<Calculus> {
   clickNumber(String textTile) {
     if (screenNumber == '0') {
       setState(() => screenNumber = textTile);
+      setState(() => calcNumber = double.parse(screenNumber));
     } else {
       setState(
         () => screenNumber += textTile,
