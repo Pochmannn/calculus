@@ -2,6 +2,7 @@ import 'package:calculus/components/number_screen.dart';
 import 'package:flutter/material.dart';
 import 'constants/ui_constants.dart';
 import 'components/number_button.dart';
+import 'components/calc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,14 +38,26 @@ class _CalculusState extends State<Calculus> {
   double calcNumber2 = 0;
   String option = '';
 
+  //TODO:
+  //nie można sparsować kropki jako double np. 0/
+
   clickNumber(String textTile) {
     if (screenNumber == '0') {
       setState(() => screenNumber = textTile);
-      setState(() => calcNumber = double.parse(screenNumber));
+      if (screenNumber != '.') {
+        setState(() => calcNumber = double.parse(screenNumber));
+      }
     } else {
       setState(
         () => screenNumber += textTile,
       );
+      setState(() => calcNumber = double.parse(screenNumber));
+    }
+  }
+
+  clickDot() {
+    if (!screenNumber.contains(".")) {
+      setState(() => screenNumber = "$screenNumber.");
       setState(() => calcNumber = double.parse(screenNumber));
     }
   }
@@ -92,6 +104,10 @@ class _CalculusState extends State<Calculus> {
 
   @override
   Widget build(BuildContext context) {
+    return calculator();
+  }
+
+  Scaffold calculator() {
     return Scaffold(
       appBar: UIConstants.appBar(),
       body: Padding(
@@ -188,7 +204,7 @@ class _CalculusState extends State<Calculus> {
                   label: '0',
                 ),
                 NumberButton(
-                  onPressed: () => clickNumber('.'),
+                  onPressed: () => clickDot(),
                   label: '.',
                 ),
                 NumberButton(
